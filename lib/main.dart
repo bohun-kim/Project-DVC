@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
       title: '데이터 시각화 집합소',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
-        textTheme: GoogleFonts.openSansTextTheme()
+        textTheme: GoogleFonts.openSansTextTheme(),
+        scaffoldBackgroundColor: Color(0xffd1d8e0),
       ),
       home: const MyPage(),
     );
