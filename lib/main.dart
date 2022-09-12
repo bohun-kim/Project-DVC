@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.openSansTextTheme(),
         scaffoldBackgroundColor: Color(0xffd1d8e0),
       ),
-      home: const MyPage(),
+      home: MyPage(),
     );
   }
 }
