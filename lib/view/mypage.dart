@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_dvc/config/glassmorphism.dart';
-import 'package:project_dvc/config/palette.dart';
+import 'package:project_dvc/config/mainpage_list.dart';
+import 'package:project_dvc/view/page/live_chart.dart';
 
 class MyPage extends StatelessWidget {
   MyPage({Key? key}) : super(key: key);
-
-  final List<String> titleList = ['의료', '사람', '금융', '문화', '동물', '2'];
-  final List<IconData> iconList = [
-    Icons.medical_services_outlined,
-    Icons.person_outline,
-    Icons.money_outlined,
-    Icons.museum_outlined,
-    Icons.pets_outlined,
-    Icons.medical_services_outlined,
-  ];
-  final List<Widget> pageList = [
-
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +18,13 @@ class MyPage extends StatelessWidget {
         elevation: 0,
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 동적 시각화 차트
           Padding(
             padding: EdgeInsets.all(10),
             child: Column(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 300,
-                  child: GlassMorphism(
-                    child: Text('동적 그래프'),
-                    start: .7,
-                    end: .5,
-                  ),
-                ),
+                GlassMorphism(start: .4, end: .5, child: Text('hi')),
                 SizedBox(
                   height: 10,
                 ),
@@ -68,15 +47,24 @@ class MyPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return MainPageList().pageList[index];
+                              }),
+                            );
+                          },
                           icon: Icon(
-                            iconList[index],
+                            MainPageList().iconList[index],
                           ),
                           iconSize: 50,
                         ),
                         Text(
-                          titleList[index],
-                          style: TextStyle(fontSize: 30),
+                          MainPageList().titleList[index],
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
                         ),
                       ],
                     ),
@@ -84,7 +72,7 @@ class MyPage extends StatelessWidget {
                     end: .5,
                   );
                 },
-                itemCount: titleList.length,
+                itemCount: MainPageList().titleList.length,
               ),
             ),
           )
