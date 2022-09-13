@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:math' as math;
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:project_dvc/config/glassmorphism.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class LiveChart extends StatefulWidget {
   const LiveChart({Key? key}) : super(key: key);
@@ -58,28 +57,49 @@ class _LiveChartState extends State<LiveChart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: SfCartesianChart(
-          // legend: Legend(isVisible: true),
-          series: [
-            LineSeries<LiveData, int>(
-                onRendererCreated: (ChartSeriesController controller) {
-                  _chartSeriesController = controller;
-                },
-                dataSource: chartData,
-                xValueMapper: (LiveData data, _) => data.time,
-                yValueMapper: (LiveData data, _) => data.speed,
-           )
-          ],
-          primaryXAxis: NumericAxis(majorGridLines: MajorGridLines(width: 1),
-          edgeLabelPlacement: EdgeLabelPlacement.shift,
-            interval: 2,
-            title: AxisTitle(text:'Time (seconds)')
+      body: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+        child: Container(
+          // 배경 글라스 효과
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withOpacity(.4),
+                Colors.white.withOpacity(.5),
+              ],
+              begin: AlignmentDirectional.topStart,
+              end: AlignmentDirectional.bottomEnd,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            border: Border.all(
+              width: 1.3,
+              color: Colors.white.withOpacity(0.5),
+            ),
           ),
-          primaryYAxis: NumericAxis(majorGridLines: MajorGridLines(width: 1),
-              edgeLabelPlacement: EdgeLabelPlacement.shift,
+
+          // 동적 그래프
+          child: SfCartesianChart(
+            // legend: Legend(isVisible: true),
+            series: [
+              LineSeries<LiveData, int>(
+                  onRendererCreated: (ChartSeriesController controller) {
+                    _chartSeriesController = controller;
+                  },
+                  dataSource: chartData,
+                  xValueMapper: (LiveData data, _) => data.time,
+                  yValueMapper: (LiveData data, _) => data.speed,
+             )
+            ],
+            primaryXAxis: NumericAxis(majorGridLines: MajorGridLines(width: 1),
+            edgeLabelPlacement: EdgeLabelPlacement.shift,
               interval: 2,
-              title: AxisTitle(text:'Speed (m/s)')
+              title: AxisTitle(text:'Time (seconds)')
+            ),
+            primaryYAxis: NumericAxis(majorGridLines: MajorGridLines(width: 1),
+                edgeLabelPlacement: EdgeLabelPlacement.shift,
+                interval: 2,
+                title: AxisTitle(text:'Speed (m/s)')
+            ),
           ),
         ),
       ),

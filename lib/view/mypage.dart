@@ -21,14 +21,11 @@ class MyPage extends StatelessWidget {
         children: [
           // 동적 시각화 차트
           Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: [
-                GlassMorphism(start: .4, end: .5, child: Text('hi')),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
+            padding: EdgeInsets.fromLTRB(10, 20, 10, 10),
+            child: Container(
+              width: double.infinity,
+              height: 300,
+              child: LiveChart(),
             ),
           ),
 

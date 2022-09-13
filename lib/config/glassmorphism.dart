@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class GlassMorphism extends StatelessWidget {
-  final Widget? child;
+  final Widget child;
   final double start;
   final double end;
 
   const GlassMorphism({
     Key? key,
-    this.child,
+    required this.child,
     required this.start,
     required this.end,
   }) : super(key: key);
@@ -19,8 +19,6 @@ class GlassMorphism extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
         child: Container(
-          width: double.infinity,
-          height: 300,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -32,7 +30,7 @@ class GlassMorphism extends StatelessWidget {
             ),
             borderRadius: BorderRadius.all(Radius.circular(10)),
             border: Border.all(
-              width: 1.5,
+              width: 1.3,
               color: Colors.white.withOpacity(0.5),
             ),
           ),
