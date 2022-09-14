@@ -25,7 +25,11 @@ class MyPage extends StatelessWidget {
             child: Container(
               width: double.infinity,
               height: 300,
-              child: LiveChart(),
+              child: GlassMorphism(
+                end: .5,
+                start: .5,
+                child: LineChartSample2(),
+              ),
             ),
           ),
 

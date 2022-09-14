@@ -37,6 +37,7 @@ dependencies:
   get:
   google_fonts: ^3.0.1
   syncfusion_flutter_charts: ^20.2.49
+  fl_chart: ^0.55.1
 
 dev_dependencies:
   flutter_test:
